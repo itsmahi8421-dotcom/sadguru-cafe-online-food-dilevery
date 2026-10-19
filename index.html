@@ -31,43 +31,97 @@
       background-color: var(--bg-cream);
       color: var(--text-dark);
       line-height: 1.5;
-      padding-bottom: 90px; /* Cart floating bar sathi space */
+      padding-bottom: 90px;
+      position: relative;
     }
 
-    /* Header Styling */
-    header {
+    /* Background Fade Logo (Watermark) */
+    body::before {
+      content: "S";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 35vw;
+      font-family: serif;
+      font-weight: bold;
+      color: rgba(90, 18, 18, 0.04);
+      z-index: -1;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    /* Hero Section */
+    .hero-section {
       background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
       color: #fff;
       text-align: center;
-      padding: 32px 16px 24px;
+      padding: 40px 16px;
       border-bottom: 4px solid var(--gold);
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
+    .hero-sub {
       color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    header .subtitle {
       font-size: 1.1rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-      color: #f7e7b4;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
     }
 
-    header .wait-notice {
+    .cafe-logo-container {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 15px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .cafe-logo-text {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--gold);
+      font-family: serif;
+    }
+
+    .hero-section h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .wait-notice {
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.12);
       border: 1px solid var(--gold);
       border-radius: 25px;
-      padding: 6px 16px;
+      padding: 8px 18px;
       font-size: 0.9rem;
-      color: #fff;
+      color: #f7e7b4;
+      margin-top: 10px;
     }
 
-    /* Sticky Category Navigation Bar */
+    .veg-badge {
+      display: inline-block;
+      border: 2px solid #00aa00;
+      padding: 2px 8px;
+      background: #fff;
+      margin-top: 12px;
+      border-radius: 4px;
+    }
+    .veg-dot {
+      width: 12px;
+      height: 12px;
+      background-color: #00aa00;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Sticky Navigation */
     .category-nav {
       position: sticky;
       top: 0;
@@ -85,7 +139,6 @@
     .category-nav::-webkit-scrollbar {
       height: 4px;
     }
-
     .category-nav::-webkit-scrollbar-thumb {
       background: var(--gold);
       border-radius: 4px;
@@ -108,14 +161,12 @@
       color: #fff;
     }
 
-    /* Main Container */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 20px 16px 40px;
     }
 
-    /* Category Section */
     .menu-section {
       margin-top: 32px;
       scroll-margin-top: 65px;
@@ -139,7 +190,6 @@
       font-weight: 600;
     }
 
-    /* Menu Grid & Cards */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -155,6 +205,17 @@
       align-items: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       border: 1px solid #f0e6d8;
+      transition: transform 0.2s;
+    }
+
+    /* Animation when item added */
+    @keyframes pulse-anim {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); background-color: #fcf1d4; }
+      100% { transform: scale(1); }
+    }
+    .pulse {
+      animation: pulse-anim 0.3s ease;
     }
 
     .item-info h3 {
@@ -173,31 +234,40 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 8px;
+      gap: 6px;
     }
 
     .item-price {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--price-red);
       white-space: nowrap;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 5px;
     }
 
     .add-btn {
       background-color: var(--maroon);
       color: #fff;
       border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 0.82rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
     }
 
     .add-btn:hover {
       background-color: var(--gold);
       color: #1a1a1a;
+    }
+
+    .add-btn:active {
+      transform: scale(0.92);
     }
 
     /* Floating Cart Bar */
@@ -208,7 +278,7 @@
       right: 0;
       background: var(--maroon-dark);
       color: #fff;
-      padding: 14px 20px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -218,18 +288,35 @@
     }
 
     .cart-info {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 600;
+      cursor: pointer;
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .view-cart-btn {
+      background-color: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
     .cart-btn {
       background-color: var(--gold);
       color: #1a1a1a;
       border: none;
-      padding: 10px 22px;
-      border-radius: 25px;
+      padding: 8px 18px;
+      border-radius: 20px;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
@@ -238,7 +325,99 @@
       background-color: #e5c148;
     }
 
-    /* Footer */
+    /* Modal Styling for Cart Items Review & Remove */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 16px;
+    }
+
+    .modal-content {
+      background: #fff;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 12px;
+      padding: 20px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .modal-header h3 {
+      color: var(--maroon);
+      font-size: 1.2rem;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .cart-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 0.92rem;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--price-red);
+      margin-right: 12px;
+    }
+
+    .remove-item-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .remove-item-btn:hover {
+      background-color: #cc0000;
+    }
+
+    .modal-footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid #eee;
+      padding-top: 15px;
+    }
+
+    .modal-total {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--maroon);
+    }
+
     footer {
       background-color: var(--maroon);
       color: #fff;
@@ -256,14 +435,21 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>SADGURU CAFE</h1>
-    <div class="subtitle">|| अंबज्ञ || • 100% Pure Veg</div>
-    <div class="wait-notice">
-      ⚠️ ऑर्डर दिल्यानंतर १५-२० मिनिटे वाट पाहावी... (After placing the order, wait 15-20 mins)
+  <!-- Hero / Logo & Welcome Page Section -->
+  <div class="hero-section">
+    <div class="hero-sub">|| अंबज्ञ ||</div>
+    <div class="cafe-logo-container">
+      <div class="cafe-logo-text">S</div>
     </div>
-  </header>
+    <h1>SADGURU CAFE</h1>
+    <div class="wait-notice">
+      ⚠️ After placing the order, you have to wait 15 to 20 minutes...<br>
+      ऑर्डर दिल्यानंतर १५-२० मिनिटे वाट पाहावी...
+    </div>
+    <div>
+      <div class="veg-badge"><span class="veg-dot"></span></div>
+    </div>
+  </div>
 
   <!-- Category Navigation -->
   <nav class="category-nav">
@@ -289,45 +475,21 @@
 
   <main class="container">
 
-    <!-- 1. MILKSHAKE (Navin Page Add Kela) -->
+    <!-- 1. MILKSHAKE -->
     <section id="milkshake" class="menu-section">
       <h2 class="section-title">Milkshake (मिल्कशेेक)</h2>
       <div class="menu-grid">
-        <div class="menu-card">
-          <div class="item-info"><h3>Chocolate Milkshake</h3><p>चॉकलेट मिल्कशेेक</p></div>
-          <div class="card-right">
-            <div class="item-price">₹80</div>
-            <button class="add-btn" onclick="addToCart('Chocolate Milkshake', 80)">Add</button>
-          </div>
-        </div>
-        <div class="menu-card">
-          <div class="item-info"><h3>Strawberry Milkshake</h3><p>स्ट्रॉबेरी मिल्कशेेक</p></div>
-          <div class="card-right">
-            <div class="item-price">₹80</div>
-            <button class="add-btn" onclick="addToCart('Strawberry Milkshake', 80)">Add</button>
-          </div>
-        </div>
-        <div class="menu-card">
-          <div class="item-info"><h3>Butterscotch Milkshake</h3><p>बटरस्कॉच मिल्कशेेक</p></div>
-          <div class="card-right">
-            <div class="item-price">₹90</div>
-            <button class="add-btn" onclick="addToCart('Butterscotch Milkshake', 90)">Add</button>
-          </div>
-        </div>
-        <div class="menu-card">
-          <div class="item-info"><h3>Oreo Milkshake</h3><p>ओरिओ मिल्कशेेक</p></div>
-          <div class="card-right">
-            <div class="item-price">₹100</div>
-            <button class="add-btn" onclick="addToCart('Oreo Milkshake', 100)">Add</button>
-          </div>
-        </div>
-        <div class="menu-card">
-          <div class="item-info"><h3>Dryfruit Milkshake</h3><p>ड्रायफ्रूट मिल्कशेेक</p></div>
-          <div class="card-right">
-            <div class="item-price">₹120</div>
-            <button class="add-btn" onclick="addToCart('Dryfruit Milkshake', 120)">Add</button>
-          </div>
-        </div>
+        <div class="menu-card"><div class="item-info"><h3>Orange</h3><p>ऑरेंज</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Orange Milkshake', 50, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Rose</h3><p>रोज</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Rose Milkshake', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chocolate</h3><p>चॉकलेट</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Chocolate Milkshake', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Pineapple</h3><p>पायनॅपल</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Pineapple Milkshake', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Butterscotch</h3><p>बटरस्कॉच</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Butterscotch Milkshake', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Strawberry</h3><p>स्ट्रॉबेरी</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Strawberry Milkshake', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Vanilla</h3><p>व्हॅनिला</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Vanilla Milkshake', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Pista</h3><p>पिस्ता</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Pista Milkshake', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Oreo</h3><p>ओरिओ</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Oreo Milkshake', 110, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mango</h3><p>मँगो</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Mango Milkshake', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Milk Masala</h3><p>मिल्क मसाला</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Milk Masala', 130, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -335,12 +497,12 @@
     <section id="cold-beverage" class="menu-section">
       <h2 class="section-title">Cold Beverage (कोल्ड बेवरेज)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Cold Coffee</h3><p>कोल्ड कॉफी</p></div><div class="card-right"><div class="item-price">₹55</div><button class="add-btn" onclick="addToCart('Cold Coffee', 55)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee</h3><p>थिक कोल्ड कॉफी</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee', 75)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cold Coffee with Icecream</h3><p>कोल्ड कॉफी विथ आईस्क्रिम</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Cold Coffee with Icecream', 85)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cold Coffee with Crush</h3><p>कोल्ड कॉफी विथ क्रश</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Cold Coffee with Crush', 85)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee with Icecream</h3><p>थिक कोल्ड कॉफी विथ आईस्क्रिम</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee with Icecream', 95)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee with Crush</h3><p>थिक कोल्ड कॉफी विथ क्रश</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee with Crush', 95)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cold Coffee</h3><p>कोल्ड कॉफी</p></div><div class="card-right"><div class="item-price">₹55</div><button class="add-btn" onclick="addToCart('Cold Coffee', 55, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee</h3><p>थिक कोल्ड कॉफी</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee', 75, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cold Coffee with Icecream</h3><p>कोल्ड कॉफी विथ आईस्क्रिम</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Cold Coffee with Icecream', 85, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cold Coffee with Crush</h3><p>कोल्ड कॉफी विथ क्रश</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Cold Coffee with Crush', 85, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee with Icecream</h3><p>थिक कोल्ड कॉफी विथ आईस्क्रिम</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee with Icecream', 95, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Thick Cold Coffee with Crush</h3><p>थिक कोल्ड कॉफी विथ क्रश</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Thick Cold Coffee with Crush', 95, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -348,10 +510,10 @@
     <section id="mastani" class="menu-section">
       <h2 class="section-title">Mastani (मस्तानी)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Strawberry Mastani</h3><p>स्ट्रॉबेरी मस्तानी</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Strawberry Mastani', 120)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mango Mastani</h3><p>मँगो मस्तानी</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Mango Mastani', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Dryfruit Mastani</h3><p>ड्रायफ्रूट मस्तानी</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Dryfruit Mastani', 160)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Spl. Mastani</h3><p>स्पे. मस्तानी</p></div><div class="card-right"><div class="item-price">₹200</div><button class="add-btn" onclick="addToCart('Spl. Mastani', 200)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Strawberry Mastani</h3><p>स्ट्रॉबेरी मस्तानी</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Strawberry Mastani', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mango Mastani</h3><p>मँगो मस्तानी</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Mango Mastani', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Dryfruit Mastani</h3><p>ड्रायफ्रूट मस्तानी</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Dryfruit Mastani', 160, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Spl. Mastani</h3><p>स्पे. मस्तानी</p></div><div class="card-right"><div class="item-price">₹200</div><button class="add-btn" onclick="addToCart('Spl. Mastani', 200, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -359,10 +521,10 @@
     <section id="snacks" class="menu-section">
       <h2 class="section-title">Snacks (स्नॅक्स)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Wada Pav</h3><p>वडापाव</p></div><div class="card-right"><div class="item-price">₹20</div><button class="add-btn" onclick="addToCart('Wada Pav', 20)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Sangam wada</h3><p>संगमवडा</p></div><div class="card-right"><div class="item-price">₹40</div><button class="add-btn" onclick="addToCart('Sangam wada', 40)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Schezwan Wada pav</h3><p>शेजवान वडापाव</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Schezwan Wada pav', 50)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Masala Pav Jodi</h3><p>मसाला पाव जोडी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Masala Pav Jodi', 60)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Wada Pav</h3><p>वडापाव</p></div><div class="card-right"><div class="item-price">₹20</div><button class="add-btn" onclick="addToCart('Wada Pav', 20, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Sangam wada</h3><p>संगमवडा</p></div><div class="card-right"><div class="item-price">₹40</div><button class="add-btn" onclick="addToCart('Sangam wada', 40, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Schezwan Wada pav</h3><p>शेजवान वडापाव</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Schezwan Wada pav', 50, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Masala Pav Jodi</h3><p>मसाला पाव जोडी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Masala Pav Jodi', 60, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -370,9 +532,9 @@
     <section id="fasting" class="menu-section">
       <h2 class="section-title">Fasting (उपवास)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>French fries</h3><p>फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('French fries', 60)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Shabu Khichadi</h3><p>शाबु खिचडी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Shabu Khichadi', 60)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Shabu Wada</h3><p>शाबु वडा</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Shabu Wada', 70)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>French fries</h3><p>फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('French fries', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Shabu Khichadi</h3><p>शाबु खिचडी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Shabu Khichadi', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Shabu Wada</h3><p>शाबु वडा</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Shabu Wada', 70, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -380,13 +542,13 @@
     <section id="pavbhaji" class="menu-section">
       <h2 class="section-title">Pavbhaji (पावभाजी)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Pav Bhaji</h3><p>पाव भाजी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Pav Bhaji', 60)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mashroom Pav Bhaji</h3><p>मशरूम पाव भाजी</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Mashroom Pav Bhaji', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Pav Bhaji</h3><p>चीज पाव भाजी</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Cheese Pav Bhaji', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Pav Bhaji</h3><p>पनीर पाव भाजी</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Paneer Pav Bhaji', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Spl. Pav Bhaji</h3><p>स्पे. पाव भाजी</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Spl. Pav Bhaji', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Ext. Pav Jodi (with Butter)</h3><p>एक्स्ट्रा पाव जोडी</p></div><div class="card-right"><div class="item-price">₹20</div><button class="add-btn" onclick="addToCart('Ext. Pav Jodi', 20)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Ext.Bhaji Vati (with Butter)</h3><p>एक्स्ट्रा भाजी वाटी</p></div><div class="card-right"><div class="item-price">₹40</div><button class="add-btn" onclick="addToCart('Ext.Bhaji Vati', 40)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Pav Bhaji</h3><p>पाव भाजी</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Pav Bhaji', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mashroom Pav Bhaji</h3><p>मशरूम पाव भाजी</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Mashroom Pav Bhaji', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Pav Bhaji</h3><p>चीज पाव भाजी</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Cheese Pav Bhaji', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Pav Bhaji</h3><p>पनीर पाव भाजी</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Paneer Pav Bhaji', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Spl. Pav Bhaji</h3><p>स्पे. पाव भाजी</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Spl. Pav Bhaji', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Ext. Pav Jodi (with Butter)</h3><p>एक्स्ट्रा पाव जोडी</p></div><div class="card-right"><div class="item-price">₹20</div><button class="add-btn" onclick="addToCart('Ext. Pav Jodi', 20, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Ext.Bhaji Vati (with Butter)</h3><p>एक्स्ट्रा भाजी वाटी</p></div><div class="card-right"><div class="item-price">₹40</div><button class="add-btn" onclick="addToCart('Ext.Bhaji Vati', 40, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -394,9 +556,9 @@
     <section id="misal-pav" class="menu-section">
       <h2 class="section-title">Misal Pav (मिसळपाव)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Misal Pav</h3><p>मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Misal Pav', 80)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Dahi Misal Pav</h3><p>दही मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Dahi Misal Pav', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Spl. Misal Pav</h3><p>स्पे. मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Spl. Misal Pav', 150)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Misal Pav</h3><p>मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Misal Pav', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Dahi Misal Pav</h3><p>दही मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Dahi Misal Pav', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Spl. Misal Pav</h3><p>स्पे. मिसळ पाव</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Spl. Misal Pav', 150, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -404,16 +566,16 @@
     <section id="sandwich" class="menu-section">
       <h2 class="section-title">Sandwich (सॅण्डविच)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Chocolate Sandwich</h3><p>चॉकलेट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Chocolate Sandwich', 50)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Jam Sandwich</h3><p>जाम सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Jam Sandwich', 50)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Club Sandwich</h3><p>क्लब सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Club Sandwich', 75)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Grilled Sandwich</h3><p>चीज ग्रील्ड सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Cheese Grilled Sandwich', 75)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Sandwich</h3><p>कॉर्न चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Corn Cheese Sandwich', 85)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Grilled Sandwich</h3><p>व्हेज चीज ग्रील्ड सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Veg Cheese Grilled Sandwich', 95)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Corn Cheese Sandwich</h3><p>वेज कॉर्न चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Veg Corn Cheese Sandwich', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Cheese Sandwich</h3><p>पनीर चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Paneer Cheese Sandwich', 110)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Cheese Sandwich</h3><p>व्हेज पनीर चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Veg Paneer Cheese Sandwich', 120)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Peri Peri Paneer Sandwich</h3><p>पेरी पेरी पनीर सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Peri Peri Paneer Sandwich', 130)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chocolate Sandwich</h3><p>चॉकलेट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Chocolate Sandwich', 50, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Jam Sandwich</h3><p>जाम सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹50</div><button class="add-btn" onclick="addToCart('Jam Sandwich', 50, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Club Sandwich</h3><p>क्लब सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Club Sandwich', 75, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Grilled Sandwich</h3><p>चीज ग्रील्ड सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹75</div><button class="add-btn" onclick="addToCart('Cheese Grilled Sandwich', 75, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Sandwich</h3><p>कॉर्न चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹85</div><button class="add-btn" onclick="addToCart('Corn Cheese Sandwich', 85, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Grilled Sandwich</h3><p>व्हेज चीज ग्रील्ड सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹95</div><button class="add-btn" onclick="addToCart('Veg Cheese Grilled Sandwich', 95, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Corn Cheese Sandwich</h3><p>वेज कॉर्न चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Veg Corn Cheese Sandwich', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Cheese Sandwich</h3><p>पनीर चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Paneer Cheese Sandwich', 110, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Cheese Sandwich</h3><p>व्हेज पनीर चीज सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Veg Paneer Cheese Sandwich', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Peri Peri Paneer Sandwich</h3><p>पेरी पेरी पनीर सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Peri Peri Paneer Sandwich', 130, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -421,14 +583,14 @@
     <section id="toast" class="menu-section">
       <h2 class="section-title">Toast (टोस्ट)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Roasted Chocolate Sandwich</h3><p>रोस्टेड चॉकलेट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Roasted Chocolate Sandwich', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Garlic Toast</h3><p>गार्लिक टोस्ट</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Garlic Toast', 80)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Toast Sandwich</h3><p>चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Cheese Toast Sandwich', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Toast Sandwich</h3><p>व्हेज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Veg Toast Sandwich', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Chilli Garlic Toast</h3><p>चीज चिली गार्लिक टोस्ट</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Cheese Chilli Garlic Toast', 110)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Toast Sandwich</h3><p>कॉर्न चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Corn Cheese Toast Sandwich', 120)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg corn Toast Sandwich</h3><p>व्हेज कॉर्न चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Veg corn Toast Sandwich', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Toast Sandwich</h3><p>व्हेज पनीर चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Veg Paneer Toast Sandwich', 140)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Roasted Chocolate Sandwich</h3><p>रोस्टेड चॉकलेट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Roasted Chocolate Sandwich', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Garlic Toast</h3><p>गार्लिक टोस्ट</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Garlic Toast', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Toast Sandwich</h3><p>चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Cheese Toast Sandwich', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Toast Sandwich</h3><p>व्हेज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Veg Toast Sandwich', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Chilli Garlic Toast</h3><p>चीज चिली गार्लिक टोस्ट</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Cheese Chilli Garlic Toast', 110, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Toast Sandwich</h3><p>कॉर्न चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Corn Cheese Toast Sandwich', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg corn Toast Sandwich</h3><p>व्हेज कॉर्न चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Veg corn Toast Sandwich', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Toast Sandwich</h3><p>व्हेज पनीर चीज टोस्ट सॅण्डविच</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Veg Paneer Toast Sandwich', 140, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -436,13 +598,13 @@
     <section id="burger" class="menu-section">
       <h2 class="section-title">Burger (बर्गर)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Cheese Burger</h3><p>चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Cheese Burger', 60)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Burger</h3><p>व्हेज चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Veg Cheese Burger', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Cheese Burger</h3><p>पनीर चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Paneer Cheese Burger', 80)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Cheese Burger</h3><p>व्हेज पनीर चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Veg Paneer Cheese Burger', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Grilled Burger</h3><p>चीज ग्रिल्ड बर्गर</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheese Grilled Burger', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Grilled Burger</h3><p>व्हेज ग्रील्ड बर्गर</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Veg Grilled Burger', 110)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Doubble cheese Burger</h3><p>डबल चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Doubble cheese Burger', 120)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Burger</h3><p>चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Cheese Burger', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Burger</h3><p>व्हेज चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Veg Cheese Burger', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Cheese Burger</h3><p>पनीर चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Paneer Cheese Burger', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Cheese Burger</h3><p>व्हेज पनीर चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Veg Paneer Cheese Burger', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Grilled Burger</h3><p>चीज ग्रिल्ड बर्गर</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheese Grilled Burger', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Grilled Burger</h3><p>व्हेज ग्रील्ड बर्गर</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Veg Grilled Burger', 110, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Doubble cheese Burger</h3><p>डबल चीज बर्गर</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Doubble cheese Burger', 120, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -450,10 +612,10 @@
     <section id="fries" class="menu-section">
       <h2 class="section-title">Fries (फ्राईज)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Classic Salted French Fries</h3><p>क्लासिक सॉल्टेड फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Classic Salted French Fries', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Peri Peri French Fries</h3><p>पेरी पेरी फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Peri Peri French Fries', 80)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Desi Masala French Fries</h3><p>देसी मसाला फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Desi Masala French Fries', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheesy French Fries</h3><p>चीझी फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheesy French Fries', 100)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Classic Salted French Fries</h3><p>क्लासिक सॉल्टेड फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Classic Salted French Fries', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Peri Peri French Fries</h3><p>पेरी पेरी फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Peri Peri French Fries', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Desi Masala French Fries</h3><p>देसी मसाला फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Desi Masala French Fries', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheesy French Fries</h3><p>चीझी फ्रेंच फ्राईज</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheesy French Fries', 100, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -461,16 +623,16 @@
     <section id="starter" class="menu-section">
       <h2 class="section-title">Starter (स्टार्टर)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Chainese Bhel</h3><p>चायनीज भेळ</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Chainese Bhel', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Manchurian Crispy</h3><p>मंचूरियन क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Manchurian Crispy', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Potato Crispy</h3><p>पोटॅटो क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Potato Crispy', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Crispy</h3><p>व्हेज क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Veg Crispy', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Crispy</h3><p>पनीर क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Paneer Crispy', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Chilli Potato</h3><p>चिली पोटॅटो</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Chilli Potato', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mashroom Chilli</h3><p>मशरूम चिली</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Mashroom Chilli', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer chilli</h3><p>पनीर चिली</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Paneer chilli', 170)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Baby Corn Chilli</h3><p>बेबी कॉर्न चिली</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Baby Corn Chilli', 180)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Jangali</h3><p>व्हेज जंगली</p></div><div class="card-right"><div class="item-price">₹190</div><button class="add-btn" onclick="addToCart('Veg Jangali', 190)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chainese Bhel</h3><p>चायनीज भेळ</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Chainese Bhel', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Manchurian Crispy</h3><p>मंचूरियन क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Manchurian Crispy', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Potato Crispy</h3><p>पोटॅटो क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Potato Crispy', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Crispy</h3><p>व्हेज क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Veg Crispy', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Crispy</h3><p>पनीर क्रिस्पी</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Paneer Crispy', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chilli Potato</h3><p>चिली पोटॅटो</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Chilli Potato', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mashroom Chilli</h3><p>मशरूम चिली</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Mashroom Chilli', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer chilli</h3><p>पनीर चिली</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Paneer chilli', 170, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Baby Corn Chilli</h3><p>बेबी कॉर्न चिली</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Baby Corn Chilli', 180, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Jangali</h3><p>व्हेज जंगली</p></div><div class="card-right"><div class="item-price">₹190</div><button class="add-btn" onclick="addToCart('Veg Jangali', 190, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -478,14 +640,14 @@
     <section id="manchurian" class="menu-section">
       <h2 class="section-title">Manchurian (मंच्युरियन)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Manchurian Dry</h3><p>मंच्युरियन ड्राय</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Manchurian Dry', 120)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Manchurian Gravy</h3><p>मंचुरियन ग्रेव्ही</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Manchurian Gravy', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Flower Manchurian</h3><p>फ्लावर मंचुरियन</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Flower Manchurian', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Ginger Manchurian</h3><p>जिंजर मंचुरियन</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Ginger Manchurian', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Garlic Manchurian</h3><p>गार्लिक मंचुरियन</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Garlic Manchurian', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Manchurian</h3><p>पनीर मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Paneer Manchurian', 160)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mushroom Manchurian</h3><p>मशरूम मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Mushroom Manchurian', 160)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Hong Kong Manchurian</h3><p>हाँग काँग मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Hong Kong Manchurian', 170)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Manchurian Dry</h3><p>मंच्युरियन ड्राय</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Manchurian Dry', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Manchurian Gravy</h3><p>मंचुरियन ग्रेव्ही</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Manchurian Gravy', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Flower Manchurian</h3><p>फ्लावर मंचुरियन</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Flower Manchurian', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Ginger Manchurian</h3><p>जिंजर मंचुरियन</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Ginger Manchurian', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Garlic Manchurian</h3><p>गार्लिक मंचुरियन</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Garlic Manchurian', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Manchurian</h3><p>पनीर मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Paneer Manchurian', 160, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mushroom Manchurian</h3><p>मशरूम मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Mushroom Manchurian', 160, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Hong Kong Manchurian</h3><p>हाँग काँग मंच्युरियन</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Hong Kong Manchurian', 170, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -493,46 +655,82 @@
     <section id="soup" class="menu-section">
       <h2 class="section-title">Soup (सुप)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Manchaw Soup</h3><p>मंचाव सुप</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Manchaw Soup', 60)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Ginger Soup</h3><p>जिंजर सुप</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Ginger Soup', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>GarlicSoup</h3><p>गार्लिक सुप</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('GarlicSoup', 70)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Shejwan Soup</h3><p>शेजवान सुप</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Shejwan Soup', 80)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mashroom Soup</h3><p>मशरूम सुप</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Mashroom Soup', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Hot And Sour Soup</h3><p>हॉट अँड सौर सूप</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Hot And Sour Soup', 100)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Manchaw Soup</h3><p>मंचाव सुप</p></div><div class="card-right"><div class="item-price">₹60</div><button class="add-btn" onclick="addToCart('Manchaw Soup', 60, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Ginger Soup</h3><p>जिंजर सुप</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('Ginger Soup', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>GarlicSoup</h3><p>गार्लिक सुप</p></div><div class="card-right"><div class="item-price">₹70</div><button class="add-btn" onclick="addToCart('GarlicSoup', 70, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Shejwan Soup</h3><p>शेजवान सुप</p></div><div class="card-right"><div class="item-price">₹80</div><button class="add-btn" onclick="addToCart('Shejwan Soup', 80, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Mashroom Soup</h3><p>मशरूम सुप</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Mashroom Soup', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Hot And Sour Soup</h3><p>हॉट अँड सौर सूप</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Hot And Sour Soup', 100, this)">Add</button></div></div>
       </div>
     </section>
 
-    <!-- 15. RICE -->
+    <!-- 15. RICE (Half & Full Separate Add Buttons) -->
     <section id="rice" class="menu-section">
       <h2 class="section-title"><span>Rice (राईस)</span> <span class="sub-label">Half / Full</span></h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Fried Rice</h3><p>फ्राईड राईस</p></div><div class="card-right"><div class="item-price">₹70 / ₹130</div><button class="add-btn" onclick="addToCart('Fried Rice (Full)', 130)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Combo Rice</h3><p>कॉम्बो राईस</p></div><div class="card-right"><div class="item-price">₹80 / ₹150</div><button class="add-btn" onclick="addToCart('Combo Rice (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Garlic Rice</h3><p>गार्लिक राईस</p></div><div class="card-right"><div class="item-price">₹80 / ₹150</div><button class="add-btn" onclick="addToCart('Garlic Rice (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Schezwan Rice</h3><p>शेजवान राईस</p></div><div class="card-right"><div class="item-price">₹80 / ₹150</div><button class="add-btn" onclick="addToCart('Schezwan Rice (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Crispy Rice</h3><p>क्रिस्पी राईस</p></div><div class="card-right"><div class="item-price">₹90 / ₹170</div><button class="add-btn" onclick="addToCart('Crispy Rice (Full)', 170)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Singapur Rice</h3><p>सिंगापूर राईस</p></div><div class="card-right"><div class="item-price">₹90 / ₹170</div><button class="add-btn" onclick="addToCart('Singapur Rice (Full)', 170)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Hong Kong Rice</h3><p>हाँग काँग राईस</p></div><div class="card-right"><div class="item-price">₹90 / ₹170</div><button class="add-btn" onclick="addToCart('Hong Kong Rice (Full)', 170)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Tripple Rice</h3><p>ट्रिपल राईस</p></div><div class="card-right"><div class="item-price">₹100 / ₹190</div><button class="add-btn" onclick="addToCart('Tripple Rice (Full)', 190)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Manchurian Rice</h3><p>मंचुरियन राईस</p></div><div class="card-right"><div class="item-price">₹110 / ₹210</div><button class="add-btn" onclick="addToCart('Manchurian Rice (Full)', 210)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mushroom Rice</h3><p>मशरूम राईस</p></div><div class="card-right"><div class="item-price">₹120 / ₹230</div><button class="add-btn" onclick="addToCart('Mushroom Rice (Full)', 230)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Rice</h3><p>पनीर राईस</p></div><div class="card-right"><div class="item-price">₹120 / ₹230</div><button class="add-btn" onclick="addToCart('Paneer Rice (Full)', 230)">Add Full</button></div></div>
+        <script>
+          const riceItems = [
+            {name: 'Fried Rice', half: 70, full: 130, marathi: 'फ्राईड राईस'},
+            {name: 'Combo Rice', half: 80, full: 150, marathi: 'कॉम्बो राईस'},
+            {name: 'Garlic Rice', half: 80, full: 150, marathi: 'गार्लिक राईस'},
+            {name: 'Schezwan Rice', half: 80, full: 150, marathi: 'शेजवान राईस'},
+            {name: 'Crispy Rice', half: 90, full: 170, marathi: 'क्रिस्पी राईस'},
+            {name: 'Singapur Rice', half: 90, full: 170, marathi: 'सिंगापूर राईस'},
+            {name: 'Hong Kong Rice', half: 90, full: 170, marathi: 'हाँग काँग राईस'},
+            {name: 'Tripple Rice', half: 100, full: 190, marathi: 'ट्रिपल राईस'},
+            {name: 'Manchurian Rice', half: 110, full: 210, marathi: 'मंचुरियन राईस'},
+            {name: 'Mushroom Rice', half: 120, full: 230, marathi: 'मशरूम राईस'},
+            {name: 'Paneer Rice', half: 120, full: 230, marathi: 'पनीर राईस'}
+          ];
+          riceItems.forEach(item => {
+            document.write(`
+              <div class="menu-card">
+                <div class="item-info"><h3>${item.name}</h3><p>${item.marathi}</p></div>
+                <div class="card-right">
+                  <div class="item-price">₹${item.half} / ₹${item.full}</div>
+                  <div class="btn-group">
+                    <button class="add-btn" onclick="addToCart('${item.name} (Half)', ${item.half}, this)">Half</button>
+                    <button class="add-btn" onclick="addToCart('${item.name} (Full)', ${item.full}, this)">Full</button>
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+        </script>
       </div>
     </section>
 
-    <!-- 16. NOODLES -->
+    <!-- 16. NOODLES (Half & Full Separate Add Buttons) -->
     <section id="noodles" class="menu-section">
       <h2 class="section-title"><span>Noodles (नुडल्स)</span> <span class="sub-label">Half / Full</span></h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Hakka Noodles</h3><p>हक्का नुडल्स</p></div><div class="card-right"><div class="item-price">₹70 / ₹130</div><button class="add-btn" onclick="addToCart('Hakka Noodles (Full)', 130)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Garlic Noodles</h3><p>गार्लिक नुडल्स</p></div><div class="card-right"><div class="item-price">₹80 / ₹150</div><button class="add-btn" onclick="addToCart('Garlic Noodles (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Schezwan Noodles</h3><p>शेजवान नुडल्स</p></div><div class="card-right"><div class="item-price">₹80 / ₹150</div><button class="add-btn" onclick="addToCart('Schezwan Noodles (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Hong Kong Noodles</h3><p>हाँग काँग नुडल्स</p></div><div class="card-right"><div class="item-price">₹90 / ₹150</div><button class="add-btn" onclick="addToCart('Hong Kong Noodles (Full)', 150)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Singapore Noodles</h3><p>सिंगापूर नुडल्स</p></div><div class="card-right"><div class="item-price">₹90 / ₹170</div><button class="add-btn" onclick="addToCart('Singapore Noodles (Full)', 170)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Tripple Noodles</h3><p>ट्रिपल नुडल्स</p></div><div class="card-right"><div class="item-price">₹100 / ₹190</div><button class="add-btn" onclick="addToCart('Tripple Noodles (Full)', 190)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Manchurian Noodles</h3><p>मंचुरियन नुडल्स</p></div><div class="card-right"><div class="item-price">₹110 / ₹210</div><button class="add-btn" onclick="addToCart('Manchurian Noodles (Full)', 210)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Mashroom Noodles</h3><p>मशरूम नुडल्स</p></div><div class="card-right"><div class="item-price">₹120 / ₹230</div><button class="add-btn" onclick="addToCart('Mashroom Noodles (Full)', 230)">Add Full</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Noodles</h3><p>पनीर नुडल्स</p></div><div class="card-right"><div class="item-price">₹120 / ₹230</div><button class="add-btn" onclick="addToCart('Paneer Noodles (Full)', 230)">Add Full</button></div></div>
+        <script>
+          const noodleItems = [
+            {name: 'Hakka Noodles', half: 70, full: 130, marathi: 'हक्का नुडल्स'},
+            {name: 'Garlic Noodles', half: 80, full: 150, marathi: 'गार्लिक नुडल्स'},
+            {name: 'Schezwan Noodles', half: 80, full: 150, marathi: 'शेजवान नुडल्स'},
+            {name: 'Hong Kong Noodles', half: 90, full: 150, marathi: 'हाँग काँग नुडल्स'},
+            {name: 'Singapore Noodles', half: 90, full: 170, marathi: 'सिंगापूर नुडल्स'},
+            {name: 'Tripple Noodles', half: 100, full: 190, marathi: 'ट्रिपल नुडल्स'},
+            {name: 'Manchurian Noodles', half: 110, full: 210, marathi: 'मंचुरियन नुडल्स'},
+            {name: 'Mashroom Noodles', half: 120, full: 230, marathi: 'मशरूम नुडल्स'},
+            {name: 'Paneer Noodles', half: 120, full: 230, marathi: 'पनीर नुडल्स'}
+          ];
+          noodleItems.forEach(item => {
+            document.write(`
+              <div class="menu-card">
+                <div class="item-info"><h3>${item.name}</h3><p>${item.marathi}</p></div>
+                <div class="card-right">
+                  <div class="item-price">₹${item.half} / ₹${item.full}</div>
+                  <div class="btn-group">
+                    <button class="add-btn" onclick="addToCart('${item.name} (Half)', ${item.half}, this)">Half</button>
+                    <button class="add-btn" onclick="addToCart('${item.name} (Full)', ${item.full}, this)">Full</button>
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+        </script>
       </div>
     </section>
 
@@ -540,15 +738,15 @@
     <section id="momos" class="menu-section">
       <h2 class="section-title">Momos (मोमोज्)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Steam Momos</h3><p>स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Steam Momos', 90)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Fried Momos</h3><p>फ्राईड मोमोज्</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Fried Momos', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Chilli Momos</h3><p>चिली मोमोज्</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Chilli Momos', 110)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Steam Momos</h3><p>चीज स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Cheese Steam Momos', 120)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Fry Momos</h3><p>चीज फ्राय मोमोज्</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Cheese Fry Momos', 130)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Steam Momos</h3><p>पनीर स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Paneer Steam Momos', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer Fry Momos</h3><p>पनीर फ्राय मोमोज्</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Paneer Fry Momos', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Momos</h3><p>कॉर्न चीज मोमोज्</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Corn Cheese Momos', 160)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Jhol Momos</h3><p>झोल मोमोज्</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Jhol Momos', 180)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Steam Momos</h3><p>स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹90</div><button class="add-btn" onclick="addToCart('Steam Momos', 90, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Fried Momos</h3><p>फ्राईड मोमोज्</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Fried Momos', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chilli Momos</h3><p>चिली मोमोज्</p></div><div class="card-right"><div class="item-price">₹110</div><button class="add-btn" onclick="addToCart('Chilli Momos', 110, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Steam Momos</h3><p>चीज स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹120</div><button class="add-btn" onclick="addToCart('Cheese Steam Momos', 120, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Fry Momos</h3><p>चीज फ्राय मोमोज्</p></div><div class="card-right"><div class="item-price">₹130</div><button class="add-btn" onclick="addToCart('Cheese Fry Momos', 130, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Steam Momos</h3><p>पनीर स्टीम मोमोज्</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Paneer Steam Momos', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer Fry Momos</h3><p>पनीर फ्राय मोमोज्</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Paneer Fry Momos', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Corn Cheese Momos</h3><p>कॉर्न चीज मोमोज्</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Corn Cheese Momos', 160, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Jhol Momos</h3><p>झोल मोमोज्</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Jhol Momos', 180, this)">Add</button></div></div>
       </div>
     </section>
 
@@ -556,30 +754,50 @@
     <section id="pizza" class="menu-section">
       <h2 class="section-title">Pizza (पिझ्झा)</h2>
       <div class="menu-grid">
-        <div class="menu-card"><div class="item-info"><h3>Cheese Pizza</h3><p>चीज पिझ्झा</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheese Pizza', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Chocolate Pizza</h3><p>चॉकलेट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Chocolate Pizza', 100)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Sweet Corn Pizza</h3><p>स्वीट कॉर्न पिझ्झा</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Sweet Corn Pizza', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Margareta Pizza</h3><p>मागरिटा पिझ्झा</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Margareta Pizza', 140)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Paneer pizza</h3><p>पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Paneer pizza', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Onion Capsicum Pizza</h3><p>ओनियन कॅप्सीकम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Onion Capsicum Pizza', 150)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Cheese Brust Pizza</h3><p>चीज बर्स्ट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Cheese Brust Pizza', 160)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Pizza</h3><p>व्हेज चीज पिझ्झा</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Veg Cheese Pizza', 170)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Mashroom Pizza</h3><p>व्हेज मशरुम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Veg Mashroom Pizza', 180)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Pizza</h3><p>व्हेज पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹190</div><button class="add-btn" onclick="addToCart('Veg Paneer Pizza', 190)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Baby Corn Pizza</h3><p>व्हेज बेबी कॉर्न पिझ्झा</p></div><div class="card-right"><div class="item-price">₹200</div><button class="add-btn" onclick="addToCart('Veg Baby Corn Pizza', 200)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Mashroom Paneer Pizza</h3><p>व्हेज मशरूम पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹210</div><button class="add-btn" onclick="addToCart('Veg Mashroom Paneer Pizza', 210)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Veg Burst Pizza</h3><p>व्हेज बर्स्ट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹220</div><button class="add-btn" onclick="addToCart('Veg Burst Pizza', 220)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Spl. Pizza</h3><p>स्पे. पिझ्झा</p></div><div class="card-right"><div class="item-price">₹270</div><button class="add-btn" onclick="addToCart('Spl. Pizza', 270)">Add</button></div></div>
-        <div class="menu-card"><div class="item-info"><h3>Custom Pizza</h3><p>कस्टम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹300</div><button class="add-btn" onclick="addToCart('Custom Pizza', 300)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Pizza</h3><p>चीज पिझ्झा</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Cheese Pizza', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Chocolate Pizza</h3><p>चॉकलेट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹100</div><button class="add-btn" onclick="addToCart('Chocolate Pizza', 100, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Sweet Corn Pizza</h3><p>स्वीट कॉर्न पिझ्झा</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Sweet Corn Pizza', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Margareta Pizza</h3><p>मागरिटा पिझ्झा</p></div><div class="card-right"><div class="item-price">₹140</div><button class="add-btn" onclick="addToCart('Margareta Pizza', 140, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Paneer pizza</h3><p>पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Paneer pizza', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Onion Capsicum Pizza</h3><p>ओनियन कॅप्सीकम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹150</div><button class="add-btn" onclick="addToCart('Onion Capsicum Pizza', 150, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Cheese Brust Pizza</h3><p>चीज बर्स्ट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹160</div><button class="add-btn" onclick="addToCart('Cheese Brust Pizza', 160, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Cheese Pizza</h3><p>व्हेज चीज पिझ्झा</p></div><div class="card-right"><div class="item-price">₹170</div><button class="add-btn" onclick="addToCart('Veg Cheese Pizza', 170, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Mashroom Pizza</h3><p>व्हेज मशरुम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹180</div><button class="add-btn" onclick="addToCart('Veg Mashroom Pizza', 180, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Paneer Pizza</h3><p>व्हेज पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹190</div><button class="add-btn" onclick="addToCart('Veg Paneer Pizza', 190, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Baby Corn Pizza</h3><p>व्हेज बेबी कॉर्न पिझ्झा</p></div><div class="card-right"><div class="item-price">₹200</div><button class="add-btn" onclick="addToCart('Veg Baby Corn Pizza', 200, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Mashroom Paneer Pizza</h3><p>व्हेज मशरूम पनीर पिझ्झा</p></div><div class="card-right"><div class="item-price">₹210</div><button class="add-btn" onclick="addToCart('Veg Mashroom Paneer Pizza', 210, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Veg Burst Pizza</h3><p>व्हेज बर्स्ट पिझ्झा</p></div><div class="card-right"><div class="item-price">₹220</div><button class="add-btn" onclick="addToCart('Veg Burst Pizza', 220, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Spl. Pizza</h3><p>स्पे. पिझ्झा</p></div><div class="card-right"><div class="item-price">₹270</div><button class="add-btn" onclick="addToCart('Spl. Pizza', 270, this)">Add</button></div></div>
+        <div class="menu-card"><div class="item-info"><h3>Custom Pizza</h3><p>कस्टम पिझ्झा</p></div><div class="card-right"><div class="item-price">₹300</div><button class="add-btn" onclick="addToCart('Custom Pizza', 300, this)">Add</button></div></div>
       </div>
     </section>
 
   </main>
 
+  <!-- Cart Modal (For viewing & removing items) -->
+  <div class="modal-overlay" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Your Cart (तुमची ऑर्डर)</h3>
+        <button class="close-modal" onclick="toggleCartModal(false)">&times;</button>
+      </div>
+      <div id="modal-cart-items">
+        <!-- Cart items list will load here -->
+      </div>
+      <div class="modal-footer">
+        <div class="modal-total" id="modal-total-price">Total: ₹0</div>
+        <button class="cart-btn" onclick="sendWhatsAppOrder()">Order on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Cart Bar -->
   <div class="cart-bar">
-    <div class="cart-info" id="cart-info">🛒 Cart: 0 items | Total: ₹0</div>
-    <button class="cart-btn" onclick="sendWhatsAppOrder()">Order on WhatsApp</button>
+    <div class="cart-info" id="cart-info" onclick="toggleCartModal(true)">🛒 Cart: 0 items | ₹0 (Click to view)</div>
+    <div class="cart-actions">
+      <button class="view-cart-btn" onclick="toggleCartModal(true)">View Cart</button>
+      <button class="cart-btn" onclick="sendWhatsAppOrder()">WhatsApp Order</button>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -587,11 +805,16 @@
     <p class="copyright">© 2026 Sadguru Cafe. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript for Cart Functionality -->
+  <!-- JavaScript Functionality -->
   <script>
     let cart = [];
 
-    function addToCart(name, price) {
+    function addToCart(name, price, btnElement) {
+      // Animation pulse effect on card
+      let card = btnElement.closest('.menu-card');
+      card.classList.add('pulse');
+      setTimeout(() => card.classList.remove('pulse'), 300);
+
       let existingItem = cart.find(item => item.name === name);
       if (existingItem) {
         existingItem.qty += 1;
@@ -601,6 +824,12 @@
       updateCartUI();
     }
 
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+      renderModalItems();
+    }
+
     function updateCartUI() {
       let totalItems = 0;
       let totalPrice = 0;
@@ -608,12 +837,46 @@
         totalItems += item.qty;
         totalPrice += (item.price * item.qty);
       });
-      document.getElementById('cart-info').innerText = `🛒 Cart: ${totalItems} items | Total: ₹${totalPrice}`;
+      document.getElementById('cart-info').innerText = `🛒 Cart: ${totalItems} items | ₹${totalPrice} (Click to View/Edit)`;
+      document.getElementById('modal-total-price').innerText = `Total: ₹${totalPrice}`;
+    }
+
+    function toggleCartModal(show) {
+      let modal = document.getElementById('cart-modal');
+      if (show) {
+        renderModalItems();
+        modal.style.display = 'flex';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+
+    function renderModalItems() {
+      let container = document.getElementById('modal-cart-items');
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">Tumchya cart madhe kontahi item nahiye.</p>';
+        return;
+      }
+      let html = '';
+      cart.forEach((item, index) => {
+        let itemTotal = item.price * item.qty;
+        html += `
+          <div class="cart-item-row">
+            <div class="cart-item-details">
+              <strong>${item.name}</strong><br>
+              <small>₹${item.price} x ${item.qty}</small>
+            </div>
+            <div class="cart-item-price">₹${item.itemTotal || itemTotal}</div>
+            <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
     }
 
     function sendWhatsAppOrder() {
       if (cart.length === 0) {
-        alert('Krushruya kuthlehi items select kara!');
+        alert('Krupaya kuthlehi items select kara!');
         return;
       }
       let message = "Hello Sadguru Cafe, mala khaliil order daychi aahe:\n\n";
@@ -625,9 +888,9 @@
       });
       message += `\n*Total Amount: ₹${grandTotal}*`;
       
-      // Tumcha WhatsApp Number ithe taka ('91XXXXXXXXXX' chya jagi)
-      let phoneNumber = "+918421848131"; 
-      let url = `https://wa.me/${+918421848131}?text=` + encodeURIComponent(message);
+      // Tumcha WhatsApp number ithe taka ('918421848131' kinva tumcha yoga number)
+      let phoneNumber = "918421848131"; 
+      let url = `https://wa.me/${phoneNumber}?text=` + encodeURIComponent(message);
       window.open(url, '_blank');
     }
   </script>
