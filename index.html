@@ -48,14 +48,16 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      opacity: 0.05; /* Fade transparency (5%) */
+      opacity: 0.10; /* Fade transparency (20%) */
       z-index: -1;
       pointer-events: none;
     }
 
-    /* Hero Section */
+   /* Hero Section with Background Image */
     .hero-section {
-      background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+      background: linear-gradient(rgba(62, 10, 10, 0.85), rgba(90, 18, 18, 0.85)), url('cover-bg.jpg');
+      background-size: cover;
+      background-position: center;
       color: #fff;
       text-align: center;
       padding: 40px 16px;
