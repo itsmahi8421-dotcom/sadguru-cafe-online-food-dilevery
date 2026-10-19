@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadguru Cafe - Online Menu & Delivery</title>
+    <style>
+        :root {
+            --primary-color: #58111a;
+            --secondary-color: #d4af37;
+            --bg-color: #fff8f0;
+            --text-color: #333333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 25px 10px;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .notice {
+            background-color: #ffe6e6;
+            color: #900;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--secondary-color);
+        }
+        .category-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 35px;
+            font-size: 1.8rem;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .menu-item {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .item-details h3 {
+            margin: 0 0 5px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        .item-details span {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .item-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #b12704;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .order-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .order-btn:hover {
+            background-color: #e6c555;
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .category-title { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SADGURU CAFE</h1>
+        <p>|| अंबज्ञ || • 100% Pure Veg</p>
+    </header>
+
+    <div class="container">
+        <div class="notice">
+            ⚠️ ऑर्ड दिल्यानंतर १५-२० मिनिटे वाट पाहावी... (After placing the order, wait 15-20 mins)
+        </div>
+
+        <!-- COLD BEVERAGE -->
+        <h2 class="category-title">Cold Beverage (कोल्ड बेव्हरेज)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Cold Coffee</h3><span>कोल्ड कॉफी</span></div><div class="item-price">₹55</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Thick Cold Coffee</h3><span>थिक कोल्ड कॉफी</span></div><div class="item-price">₹75</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cold Coffee with Icecream</h3><span>कोल्ड कॉफी विथ आईस्क्रीम</span></div><div class="item-price">₹85</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cold Coffee with Crush</h3><span>कोल्ड कॉफी विथ क्रश</span></div><div class="item-price">₹85</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Thick Cold Coffee with Icecream</h3><span>थिक कोल्ड कॉफी विथ आईस्क्रीम</span></div><div class="item-price">₹95</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Thick Cold Coffee with Crush</h3><span>थिक कोल्ड कॉफी विथ क्रश</span></div><div class="item-price">₹95</div></div>
+        </div>
+
+        <!-- MASTANI -->
+        <h2 class="category-title">Mastani (मस्तानी)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Strawberry Mastani</h3><span>स्ट्रॉबेरी मस्तानी</span></div><div class="item-price">₹120</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Mango Mastani</h3><span>मॅंगो मस्तानी</span></div><div class="item-price">₹140</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Dryfruit Mastani</h3><span>ड्रायफ्रूट मस्तानी</span></div><div class="item-price">₹160</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Spl. Mastani</h3><span>स्पे. मस्तानी</span></div><div class="item-price">₹200</div></div>
+        </div>
+
+        <!-- SNACKS & FASTING -->
+        <h2 class="category-title">Snacks & Fasting (स्नॅक्स व उपवास)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Wada Pav</h3><span>वडापाव</span></div><div class="item-price">₹20</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Sangam wada</h3><span>संगमवडा</span></div><div class="item-price">₹40</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Schezwan Wada pav</h3><span>शेजवान वडापाव</span></div><div class="item-price">₹50</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Masala Pav Jodi</h3><span>मसाला पाव जोडी</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>French fries</h3><span>फ्रेंच फ्राईज</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Shabu Khichadi</h3><span>शाबू खिचडी</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Shabu Wada</h3><span>शाबू वडा</span></div><div class="item-price">₹70</div></div>
+        </div>
+
+        <!-- PAV BHAJI & MISAL PAV -->
+        <h2 class="category-title">Pav Bhaji & Misal Pav (पावभाजी व मिसळपाव)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Pav Bhaji</h3><span>पाव भाजी</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Mashroom Pav Bhaji</h3><span>मशरूम पाव भाजी</span></div><div class="item-price">₹70</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheese Pav Bhaji</h3><span>चीज पाव भाजी</span></div><div class="item-price">₹90</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Pav Bhaji</h3><span>पनीर पाव भाजी</span></div><div class="item-price">₹100</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Spl. Pav Bhaji</h3><span>स्पे. पाव भाजी</span></div><div class="item-price">₹130</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Misal Pav</h3><span>मिसळ पाव</span></div><div class="item-price">₹80</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Dahi Misal Pav</h3><span>दही मिसळ पाव</span></div><div class="item-price">₹100</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Spl. Misal Pav</h3><span>स्पे. मिसळ पाव</span></div><div class="item-price">₹150</div></div>
+        </div>
+
+        <!-- SANDWICH & TOAST -->
+        <h2 class="category-title">Sandwich & Toast (सँडविच व टोस्ट)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Chocolate Sandwich</h3><span>चॉकलेट सँडविच</span></div><div class="item-price">₹50</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Jam Sandwich</h3><span>जाम सँडविच</span></div><div class="item-price">₹50</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Club Sandwich</h3><span>क्लब सँडविच</span></div><div class="item-price">₹75</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheese Grilled Sandwich</h3><span>चीज ग्रील्ड सँडविच</span></div><div class="item-price">₹75</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Corn Cheese Sandwich</h3><span>कॉर्न चीज सँडविच</span></div><div class="item-price">₹85</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Veg Cheese Grilled Sandwich</h3><span>व्हेज चीज ग्रील्ड सँडविच</span></div><div class="item-price">₹95</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Cheese Sandwich</h3><span>पनीर चीज सँडविच</span></div><div class="item-price">₹110</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Garlic Toast</h3><span>गार्लिक टोस्ट</span></div><div class="item-price">₹80</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheese Chilli Garlic Toast</h3><span>चीज चिली गार्लिक टोस्ट</span></div><div class="item-price">₹110</div></div>
+        </div>
+
+        <!-- BURGER & FRIES -->
+        <h2 class="category-title">Burger & Fries (बर्गर व फ्राईज)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Cheese Burger</h3><span>चीज बर्गर</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Veg Cheese Burger</h3><span>व्हेज चीज बर्गर</span></div><div class="item-price">₹70</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Cheese Burger</h3><span>पनीर चीज बर्गर</span></div><div class="item-price">₹80</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheese Grilled Burger</h3><span>चीज ग्रिल्ड बर्गर</span></div><div class="item-price">₹100</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Classic Salted French Fries</h3><span>क्लासिक सॉल्टेड फ्रेंच फ्राईज</span></div><div class="item-price">₹70</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Peri Peri French Fries</h3><span>पेरी पेरी फ्रेंच फ्राईज</span></div><div class="item-price">₹80</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheesy French Fries</h3><span>चीझी फ्रेंच फ्राईज</span></div><div class="item-price">₹100</div></div>
+        </div>
+
+        <!-- STARTERS, SOUPS & MANCHURIAN -->
+        <h2 class="category-title">Starters & Manchurian (स्टार्टर व मंचूरियन)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Chainese Bhel</h3><span>चायनीज भेळ</span></div><div class="item-price">₹90</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Manchurian Crispy</h3><span>मंचूरियन क्रिस्पी</span></div><div class="item-price">₹90</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Veg Crispy</h3><span>व्हेज क्रिस्पी</span></div><div class="item-price">₹130</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Crispy</h3><span>पनीर क्रिस्पी</span></div><div class="item-price">₹140</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Manchurian Dry</h3><span>मंचूरियन ड्राय</span></div><div class="item-price">₹120</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Manchurian</h3><span>पनीर मंचूरियन</span></div><div class="item-price">₹160</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Manchaw Soup</h3><span>मंचाय सुप</span></div><div class="item-price">₹60</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Hot And Sour Soup</h3><span>हॉट अँड सौर सुप</span></div><div class="item-price">₹100</div></div>
+        </div>
+
+        <!-- MOMOS -->
+        <h2 class="category-title">Momos (मोमोज़्)</h2>
+        <div class="menu-grid">
+            <div class="menu-item"><div class="item-details"><h3>Steam Momos</h3><span>स्टीम मोमोज़्</span></div><div class="item-price">₹90</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Fried Momos</h3><span>फ्राईड मोमोज़्</span></div><div class="item-price">₹100</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Chilli Momos</h3><span>चिली मोमोज़्</span></div><div class="item-price">₹110</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Cheese Steam Momos</h3><span>चीज स्टीम मोमोज़्</span></div><div class="item-price">₹120</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Paneer Fry Momos</h3><span>पनीर फ्राय मोमोज़्</span></div><div class="item-price">₹150</div></div>
+            <div class="menu-item"><div class="item-details"><h3>Jhol Momos</h3><span>झोल मोमोज़्</span></div><div class="item-price">₹180</div></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Order Now for Home Delivery / Takeaway!</p>
+        <a href="https://wa.me/91YOUR_WHATSAPP_NUMBER?text=Mala%20Sadguru%20Cafe%20madhun%20order%20karaychi%20aahe" class="order-btn" target="_blank">Order on WhatsApp (ऑर्डर द्या)</a>
+        <p style="margin-top: 15px; font-size: 0.9rem;">&copy; 2026 Sadguru Cafe. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
