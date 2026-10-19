@@ -35,20 +35,22 @@
       position: relative;
     }
 
-    /* Background Fade Logo (Watermark) */
+    /* Background Fade Logo (Watermark Image) */
     body::before {
-      content: "S";
+      content: "";
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 35vw;
-      font-family: serif;
-      font-weight: bold;
-      color: rgba(90, 18, 18, 0.04);
+      width: 60vw;
+      height: 60vw;
+      background-image: url('logo.png'); /* Tumcha logo image file name */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.05; /* Fade transparency (5%) */
       z-index: -1;
       pointer-events: none;
-      line-height: 1;
     }
 
     /* Hero Section */
@@ -68,23 +70,23 @@
     }
 
     .cafe-logo-container {
-      width: 150px;
-      height: 150px;
+      width: 130px;
+      height: 130px;
       margin: 0 auto 15px;
       border: 3px solid var(--gold);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.2);
+      background: #fff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
     }
 
-    .cafe-logo-text {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--gold);
-      font-family: serif;
+    .cafe-logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero-section h1 {
@@ -208,7 +210,6 @@
       transition: transform 0.2s;
     }
 
-    /* Animation when item added */
     @keyframes pulse-anim {
       0% { transform: scale(1); }
       50% { transform: scale(1.04); background-color: #fcf1d4; }
@@ -325,7 +326,7 @@
       background-color: #e5c148;
     }
 
-    /* Modal Styling for Cart Items Review & Remove */
+    /* Modal Styling */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -439,7 +440,8 @@
   <div class="hero-section">
     <div class="hero-sub">|| अंबज्ञ ||</div>
     <div class="cafe-logo-container">
-      <div class="cafe-logo-text">S</div>
+      <!-- Ithe tumchya logo image fileche naav 'logo.png' takle ahe -->
+      <img src="logo.png" alt="Sadguru Cafe Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:3rem; color:var(--gold); font-family:serif;\'>S</span>'">
     </div>
     <h1>SADGURU CAFE</h1>
     <div class="wait-notice">
@@ -774,16 +776,14 @@
 
   </main>
 
-  <!-- Cart Modal (For viewing & removing items) -->
+  <!-- Cart Modal -->
   <div class="modal-overlay" id="cart-modal">
     <div class="modal-content">
       <div class="modal-header">
         <h3>Your Cart (तुमची ऑर्डर)</h3>
         <button class="close-modal" onclick="toggleCartModal(false)">&times;</button>
       </div>
-      <div id="modal-cart-items">
-        <!-- Cart items list will load here -->
-      </div>
+      <div id="modal-cart-items"></div>
       <div class="modal-footer">
         <div class="modal-total" id="modal-total-price">Total: ₹0</div>
         <button class="cart-btn" onclick="sendWhatsAppOrder()">Order on WhatsApp</button>
@@ -805,12 +805,11 @@
     <p class="copyright">© 2026 Sadguru Cafe. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript Functionality -->
+  <!-- JavaScript -->
   <script>
     let cart = [];
 
     function addToCart(name, price, btnElement) {
-      // Animation pulse effect on card
       let card = btnElement.closest('.menu-card');
       card.classList.add('pulse');
       setTimeout(() => card.classList.remove('pulse'), 300);
@@ -866,7 +865,7 @@
               <strong>${item.name}</strong><br>
               <small>₹${item.price} x ${item.qty}</small>
             </div>
-            <div class="cart-item-price">₹${item.itemTotal || itemTotal}</div>
+            <div class="cart-item-price">₹${itemTotal}</div>
             <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
           </div>
         `;
@@ -888,7 +887,6 @@
       });
       message += `\n*Total Amount: ₹${grandTotal}*`;
       
-      // Tumcha WhatsApp number ithe taka ('918421848131' kinva tumcha yoga number)
       let phoneNumber = "918421848131"; 
       let url = `https://wa.me/${phoneNumber}?text=` + encodeURIComponent(message);
       window.open(url, '_blank');
