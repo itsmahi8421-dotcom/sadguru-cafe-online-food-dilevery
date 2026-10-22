@@ -284,7 +284,37 @@
       font-weight: 600;
       font-size: 0.95rem;
     }
+/* Google Review Banner / Button Container */
+    .google-review-box {
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid var(--gold);
+      padding: 18px;
+      border-radius: 12px;
+      margin: 30px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
 
+    .google-review-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #4285F4;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+
+    .google-review-btn:hover {
+      background-color: #3367d6;
+    }
     /* Floating Cart Bar */
     .cart-bar {
       position: fixed;
@@ -792,6 +822,19 @@
         प्रत्येक अतिरिक्त गोष्टीसाठी शुल्क आकारले जाईल...
       </div>
     </section>
+
+
+    <!-- Google Review Box -->
+    <div class="google-review-box">
+      <h3 style="color: var(--maroon); margin-bottom: 6px;">Loved our food & service? ⭐</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Please share your valuable feedback on Google!</p>
+      <a href="https://g.page/r/CUkR3AYe4KNjEBM/review" target="_blank" class="google-review-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        Rate Us on Google
+      </a>
+    </div>
+
+  </main>
 
   </main>
 
