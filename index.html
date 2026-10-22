@@ -321,45 +321,109 @@
     }
 
     /* Action Boxes (Google Review & Google Map Location) */
+    <div class="action-boxes">
+      <div class="creative-box">
+        <h3>Loved our food & service? ⭐</h3>
+        <p>Please share your valuable feedback on Google!</p>
+        <a href="https://www.google.com/maps/place/Sadguru+Cafe/@17.8374302,76.6185664,17z/data=!4m8!3m7!1s0x3bcf5b004637886f:0x63a3e01e06dc1149!8m2!3d17.8374302!4d76.6211413!9m1!1b1!16s%2Fg%2F11wqn_h9hw" target="_blank" class="creative-btn google-btn-style">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Rate Us on Google
+        </a>
+      </div>
+
+      <div class="creative-box">
+        <h3>Visit Our Cafe 📍</h3>
+        <p>Find Sadguru Cafe easily on Google Maps</p>
+        <a href="https://www.google.com/maps/place/Sadguru+Cafe/@17.8374302,76.6185664,17z/data=!4m8!3m7!1s0x3bcf5b004637886f:0x63a3e01e06dc1149!8m2!3d17.8374302!4d76.6211413!9m1!1b1!16s%2Fg%2F11wqn_h9hw" target="_blank" class="creative-btn map-btn-style">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
+    </div>
+/* Action Boxes (Google Review & Google Map Location) - Creative Design */
     .action-boxes {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
       align-items: center;
-      margin: 35px auto 10px;
-    }
-
-    .google-review-box, .map-box {
-      text-align: center;
-      background: #ffffff;
-      border: 2px solid var(--gold);
-      padding: 18px;
-      border-radius: 12px;
-      width: 100%;
+      margin: 40px auto 20px;
       max-width: 500px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .google-review-btn, .map-btn {
+    .creative-box {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #fdf8f4 100%);
+      border: 2px solid var(--gold);
+      padding: 22px;
+      border-radius: 16px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(90, 18, 18, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .creative-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(90, 18, 18, 0.15);
+    }
+
+    .creative-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 6px; height: 100%;
+      background: var(--gold);
+    }
+
+    .creative-box h3 {
+      color: var(--maroon);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .creative-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .creative-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background-color: #4285F4;
+      justify-content: center;
+      gap: 10px;
       color: #ffffff;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 11px 24px;
+      border-radius: 30px;
       font-weight: 700;
       font-size: 0.95rem;
-      margin-top: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: background 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
     }
-    .map-btn {
-      background-color: #2e7d32;
+
+    .google-btn-style {
+      background: linear-gradient(135deg, #4285F4 0%, #2b6cb0 100%);
     }
-    .google-review-btn:hover { background-color: #3367d6; }
-    .map-btn:hover { background-color: #1b5e20; }
+    .google-btn-style:hover {
+      background: linear-gradient(135deg, #3367d6 0%, #225196 100%);
+      box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+    }
+
+    .map-btn-style {
+      background: linear-gradient(135deg, #34A853 0%, #1e7e34 100%);
+    }
+    .map-btn-style:hover {
+      background: linear-gradient(135deg, #2e7d32 0%, #155724 100%);
+      box-shadow: 0 6px 16px rgba(52, 168, 83, 0.4);
+    }
+
+    .creative-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
 
     /* Floating Cart Bar */
     .cart-bar {
