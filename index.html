@@ -68,13 +68,13 @@
       color: var(--gold);
       font-size: 1.1rem;
       letter-spacing: 1px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .cafe-logo-container {
-      width: 130px;
-      height: 130px;
-      margin: 0 auto 15px;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px;
       border: 3px solid var(--gold);
       border-radius: 50%;
       display: flex;
@@ -95,18 +95,18 @@
       font-size: 2.2rem;
       letter-spacing: 2px;
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .wait-notice {
+    .timing-badge, .wait-notice {
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.12);
       border: 1px solid var(--gold);
       border-radius: 25px;
-      padding: 8px 18px;
-      font-size: 0.9rem;
+      padding: 6px 16px;
+      font-size: 0.88rem;
       color: #f7e7b4;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
     .veg-badge {
@@ -114,7 +114,7 @@
       border: 2px solid #00aa00;
       padding: 2px 8px;
       background: #fff;
-      margin-top: 12px;
+      margin-top: 10px;
       border-radius: 4px;
     }
     .veg-dot {
@@ -284,19 +284,63 @@
       font-weight: 600;
       font-size: 0.95rem;
     }
-/* Google Review Banner / Button Container */
-    .google-review-box {
+
+    /* Customer Reviews Section */
+    .reviews-section {
+      margin-top: 45px;
+      padding: 20px 0;
+      border-top: 2px dashed var(--gold);
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .review-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--gold);
+    }
+    .review-card h4 {
+      color: var(--maroon);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .review-stars {
+      color: #ffc107;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .review-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Action Boxes (Google Review & Google Map Location) */
+    .action-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin: 35px auto 10px;
+    }
+
+    .google-review-box, .map-box {
       text-align: center;
       background: #ffffff;
       border: 2px solid var(--gold);
       padding: 18px;
       border-radius: 12px;
-      margin: 30px auto;
+      width: 100%;
       max-width: 500px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .google-review-btn {
+    .google-review-btn, .map-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -311,10 +355,12 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: background 0.2s;
     }
-
-    .google-review-btn:hover {
-      background-color: #3367d6;
+    .map-btn {
+      background-color: #2e7d32;
     }
+    .google-review-btn:hover { background-color: #3367d6; }
+    .map-btn:hover { background-color: #1b5e20; }
+
     /* Floating Cart Bar */
     .cart-bar {
       position: fixed;
@@ -323,7 +369,7 @@
       right: 0;
       background: var(--maroon-dark);
       color: #fff;
-      padding: 6px 14px; /* Yithe padding kami keli ahe */
+      padding: 6px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -331,25 +377,27 @@
       z-index: 1000;
       border-top: 2px solid var(--gold);
     }
+
     .cart-info {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
     }
 
     .cart-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
+      align-items: center;
     }
 
     .view-cart-btn {
       background-color: transparent;
       color: var(--gold);
       border: 1px solid var(--gold);
-      padding: 8px 14px;
+      padding: 7px 12px;
       border-radius: 20px;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
     }
 
@@ -357,17 +405,26 @@
       background-color: #25D366 !important;
       color: #ffffff !important;
       border: none;
-      padding: 8px 18px;
+      padding: 7px 14px;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
       transition: background 0.2s;
     }
 
     .cart-btn:hover {
       background-color: #1ebe5d !important;
+    }
+
+    .cart-btn svg, .google-review-btn svg, .map-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: #ffffff;
     }
 
     /* Modal Styling */
@@ -487,6 +544,9 @@
       <img src="logo.png" alt="Sadguru Cafe Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:3rem; color:var(--gold); font-family:serif;\'>S</span>'">
     </div>
     <h1>SADGURU CAFE</h1>
+    <div class="timing-badge">
+      ⏰ Open Daily: 9:00 AM to 10:00 PM
+    </div><br>
     <div class="wait-notice">
       ⚠️ After placing the order, you have to wait 15 to 20 minutes...<br>
       ऑर्डर दिल्यानंतर १५-२० मिनिटे वाट पाहावी...
@@ -520,7 +580,7 @@
 
   <main class="container">
 
- <!-- 1. STARTER (Before Snacks) -->
+    <!-- 1. STARTER -->
     <section id="starter" class="menu-section">
       <h2 class="section-title">Starter (स्टार्टर)</h2>
       <div class="menu-grid">
@@ -548,7 +608,7 @@
       </div>
     </section>
 
-    <!-- 3. SOUP (After Snacks) -->
+    <!-- 3. SOUP -->
     <section id="soup" class="menu-section">
       <h2 class="section-title">Soup (सुप)</h2>
       <div class="menu-grid">
@@ -561,7 +621,7 @@
       </div>
     </section>
 
- <!-- 4. FASTING -->
+    <!-- 4. FASTING -->
     <section id="fasting" class="menu-section">
       <h2 class="section-title">Fasting (उपवास)</h2>
       <div class="menu-grid">
@@ -571,7 +631,7 @@
       </div>
     </section>
 
-<!-- 5. MANCHURIAN -->
+    <!-- 5. MANCHURIAN -->
     <section id="manchurian" class="menu-section">
       <h2 class="section-title">Manchurian (मंच्युरियन)</h2>
       <div class="menu-grid">
@@ -586,7 +646,7 @@
       </div>
     </section>
 
-   <!-- 6. PAVBHAJI -->
+    <!-- 6. PAVBHAJI -->
     <section id="pavbhaji" class="menu-section">
       <h2 class="section-title">Pavbhaji (पावभाजी)</h2>
       <div class="menu-grid">
@@ -610,7 +670,7 @@
       </div>
     </section>
 
-  <!-- 8. FRIES -->
+    <!-- 8. FRIES -->
     <section id="fries" class="menu-section">
       <h2 class="section-title">Fries (फ्राईज)</h2>
       <div class="menu-grid">
@@ -775,7 +835,7 @@
       </div>
     </section>
 
-    <!-- 16. COLD BEVERAGE (After Pizza) -->
+    <!-- 16. COLD BEVERAGE -->
     <section id="cold-beverage" class="menu-section">
       <h2 class="section-title">Cold Beverage (कोल्ड बेवरेज)</h2>
       <div class="menu-grid">
@@ -788,7 +848,7 @@
       </div>
     </section>
 
-    <!-- 17. MASTANI (After Cold Beverage) -->
+    <!-- 17. MASTANI -->
     <section id="mastani" class="menu-section">
       <h2 class="section-title">Mastani (मस्तानी)</h2>
       <div class="menu-grid">
@@ -822,18 +882,48 @@
       </div>
     </section>
 
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+      <h2 class="section-title">Customer Reviews (ग्राहकांचे अभिप्राय)</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <h4>Rahul Deshmukh</h4>
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Sadguru Cafe chi Cold Coffee ani Vadapav ekdam mast aahet! Service pan khup fast ahe."</p>
+        </div>
+        <div class="review-card">
+          <h4>Pooja Kulkarni</h4>
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Best place in Omerga for Fast Food & Pizza. Quality is top-notch!"</p>
+        </div>
+        <div class="review-card">
+          <h4>Amit Shinde</h4>
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Nice ambience and very polite staff. Loved their Special Misal and Mastani!"</p>
+        </div>
+      </div>
+    </section>
 
-    <!-- Google Review Box -->
-    <div class="google-review-box">
-      <h3 style="color: var(--maroon); margin-bottom: 6px;">Loved our food & service? ⭐</h3>
-      <p style="font-size: 0.9rem; color: var(--text-muted);">Please share your valuable feedback on Google!</p>
-      <a href="https://g.page/r/CUkR3AYe4KNjEBM/review" target="_blank" class="google-review-btn">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-        Rate Us on Google
-      </a>
+    <!-- Action Boxes (Google Review & Google Map Location) -->
+    <div class="action-boxes">
+      <div class="google-review-box">
+        <h3 style="color: var(--maroon); margin-bottom: 6px;">Loved our food & service? ⭐</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Please share your valuable feedback on Google!</p>
+        <a href="https://g.page/r/CUkR3AYe4KNjEBM/review" target="_blank" class="google-review-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Rate Us on Google
+        </a>
+      </div>
+
+      <div class="map-box">
+        <h3 style="color: var(--maroon); margin-bottom: 6px;">Visit Our Cafe 📍</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Find Sadguru Cafe easily on Google Maps</p>
+        <a href="https://maps.google.com/?q=Sadguru+Cafe+Omerga" target="_blank" class="map-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
     </div>
-
-  </main>
 
   </main>
 
@@ -857,10 +947,10 @@
     <div class="cart-info" id="cart-info" onclick="toggleCartModal(true)">🛒 Cart: 0 items | ₹0 (Click to view)</div>
     <div class="cart-actions">
       <button class="view-cart-btn" onclick="toggleCartModal(true)">🛒 View Cart</button>
-     <button class="cart-btn" onclick="sendWhatsAppOrder()">
-  <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#ffffff;vertical-align:middle;margin-right:4px;"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.35-1.42c1.44.78 3.08 1.25 4.69 1.25 5.46 0 9.9-4.44 9.9-9.9 0-5.46-4.44-9.9-9.9-9.9zm0 18.08c-1.42 0-2.82-.38-4.05-1.11l-.29-.17-3.03.8.81-2.95-.19-.31c-.81-1.28-1.24-2.77-1.24-4.31 0-4.46 3.63-8.09 8.09-8.09s8.09 3.63 8.09 8.09c0 4.46-3.63 8.09-8.09 8.09zm4.44-6.04c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.2-.47-.4-.41-.54-.42l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.61.57.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
-  WhatsApp Order
-</button>
+      <button class="cart-btn" onclick="sendWhatsAppOrder()">
+        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.35-1.42c1.44.78 3.08 1.25 4.69 1.25 5.46 0 9.9-4.44 9.9-9.9 0-5.46-4.44-9.9-9.9-9.9zm0 18.08c-1.42 0-2.82-.38-4.05-1.11l-.29-.17-3.03.8.81-2.95-.19-.31c-.81-1.28-1.24-2.77-1.24-4.31 0-4.46 3.63-8.09 8.09-8.09s8.09 3.63 8.09 8.09c0 4.46-3.63 8.09-8.09 8.09zm4.44-6.04c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.2-.47-.4-.41-.54-.42l-.46-.01c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.61.57.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+        WhatsApp Order
+      </button>
     </div>
   </div>
 
